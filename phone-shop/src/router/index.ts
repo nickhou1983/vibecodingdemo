@@ -25,6 +25,21 @@ const router = createRouter({
       component: () => import('../views/MarketingView.vue'),
     },
     {
+      path: '/categories',
+      name: 'categories',
+      component: () => import('../views/CategoriesView.vue'),
+    },
+    {
+      path: '/deals',
+      name: 'deals',
+      component: () => import('../views/DealsView.vue'),
+    },
+    {
+      path: '/support',
+      name: 'support',
+      component: () => import('../views/SupportView.vue'),
+    },
+    {
       path: '/products',
       name: 'products',
       component: () => import('../views/ProductListView.vue'),

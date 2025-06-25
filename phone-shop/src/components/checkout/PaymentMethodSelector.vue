@@ -127,7 +127,7 @@ const selectMethod = (methodId: string) => {
 
 const formatCardNumber = () => {
   // Remove non-digit characters and limit to 16 digits
-  let value = cardDetails.value.number.replace(/\D/g, '').substring(0, 16);
+  const value = cardDetails.value.number.replace(/\D/g, '').substring(0, 16);
   
   // Format as xxxx xxxx xxxx xxxx
   let formattedValue = '';
@@ -143,7 +143,7 @@ const formatCardNumber = () => {
 
 const formatCardExpiry = () => {
   // Remove non-digit characters
-  let value = cardDetails.value.expiry.replace(/\D/g, '');
+  const value = cardDetails.value.expiry.replace(/\D/g, '');
   
   // Format as MM/YY
   if (value.length > 2) {
