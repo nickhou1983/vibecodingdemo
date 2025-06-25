@@ -33,6 +33,9 @@
           <li class="app-header__nav-item">
             <router-link to="/support" class="app-header__nav-link">Support</router-link>
           </li>
+          <li class="app-header__nav-item">
+            <router-link to="/marketing" class="app-header__nav-link">Promotions</router-link>
+          </li>
         </ul>
       </nav>
 

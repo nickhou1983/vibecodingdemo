@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import Button from '@/components/common/Button.vue';
 import ProductCard from '@/components/products/ProductCard.vue';
+import { PromotionalBanner, FeatureHighlight, MarketingSection } from '@/components/marketing';
 
 // Router
 const router = useRouter();
@@ -89,7 +90,7 @@ const customerReviews = [
   {
     id: 2,
     name: 'Emily Johnson',
-    avatar: '/images/avatars/emily.jpg',
+    avatar: null, /* placeholder: removed image reference */
     rating: 4,
     comment: 'Great selection of phones at competitive prices. Customer service was very helpful when I had questions.',
     date: new Date('2023-09-28')
@@ -166,7 +167,7 @@ onMounted(() => {
     <section class="banner">
       <div class="container">
         <div class="banner__carousel">
-          <img src="/images/banner-bg.jpg" alt="Latest Smartphones" class="banner__image">
+          <div class="banner__image-placeholder"></div>
           <div class="banner__content">
             <h1 class="banner__title">Discover the Latest Smartphones</h1>
             <p class="banner__subtitle">Premium phones at unbeatable prices</p>
@@ -243,7 +244,7 @@ onMounted(() => {
               </Button>
             </div>
             <div class="deals__image">
-              <img src="/images/deals.png" alt="Phone Deals">
+              <div class="deals__image-placeholder"></div>
             </div>
           </div>
         </div>
@@ -259,6 +260,7 @@ onMounted(() => {
             v-for="brand in brands" 
             :key="brand.id"
             class="brand-card"
+            :data-brand="brand.name"
             @click="navigateToBrand(brand.slug)"
           >
             <img :src="brand.logo" :alt="brand.name" class="brand-logo">
@@ -504,12 +506,6 @@ section {
   justify-content: flex-end;
 }
 
-.deals__image img {
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-}
-
 /* Brands */
 .brands__grid {
   display: flex;
@@ -667,7 +663,59 @@ section {
   border-color: var(--primary-blue);
 }
 
-/* Responsive */
+/* 图片占位符 */
+.banner__image-placeholder {
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue-dark) 100%);
+  border-radius: var(--border-radius-lg);
+}
+
+.deals__image-placeholder {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.deals__image-placeholder::after {
+  content: "📱";
+  font-size: 5rem;
+  opacity: 0.5;
+}
+
+/* 产品卡片占位符 */
+.product-card .product-card__image img {
+  display: none;
+}
+
+.product-card .product-card__image::after {
+  content: "📱";
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--primary-blue);
+}
+
+/* 品牌卡片占位符 */
+.brand-card img {
+  display: none;
+}
+
+.brand-card::after {
+  content: attr(data-brand);
+  font-weight: bold;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+}
+
 @media (max-width: 992px) {
   .banner__title {
     font-size: 2.5rem;
